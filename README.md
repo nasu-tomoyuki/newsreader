@@ -1,43 +1,43 @@
 newsreader
 ==========
 
-# $B$O$8$a$K(B
-Go $B8@8l$N3+H/$KIT47$l$J$N$G!":nK!$,$h$/J,$+$C$F$$$^$;$s!#(B
+# はじめに
+Go 言語の開発に不慣れなので、作法がよく分かっていません。
 
-# $BL\E*(B
-NHK $B$N%K%e!<%9$r<hF@$7$F!"(BOpen JTalk $B$GFI$_>e$2$k%9%/%j%W%H$G$9!#(B
+# 目的
+NHK のニュースを取得して、Open JTalk で読み上げるスクリプトです。
 
-# $B;vA0$K%$%s%9%H!<%k$7$F$*$/$b$N(B
-* Go $B8@8l(B
+# 事前にインストールしておくもの
+* Go 言語
 * Open JTalk
 * aplay
 
-$B%F%9%H$O(B Debian wheezy $B$G9T$$$^$7$?!#(B
+テストは Debian wheezy で行いました。
 
-# $B;H$$J}(B
-## $B4D6-@_Dj(B
-    $ mkdir -p newsreader				# $B<B9T%U%!%$%k$NCV$->l=j(B
+# 使い方
+## 環境設定
+    $ mkdir -p newsreader				# 実行ファイルの置き場所
     $ cd newsreader
     $ go build src/reader.go
     $ go build src/input_nhknews.go
-    $ mkdir -p source					# $BFI$_>e$2$k%F%-%9%H$NCV$->l=j(B
+    $ mkdir -p source					# 読み上げるテキストの置き場所
 
-## $B<B9T(B
-    $ ./input_nhknews					# $B5-;v$r%F%-%9%H%U%!%$%k2=(B
-    $ ./reader							# $BFI$_>e$2(B
-	$ rm source/*						# $B%F%-%9%H$r:o=|(B
+## 実行
+    $ ./input_nhknews					# 記事をテキストファイル化
+    $ ./reader							# 読み上げ
+	$ rm source/*						# テキストを削除
 
-# $B@bL@(B
-$B%*%W%7%g%s$O(B -h $B$G3NG'$7$F$/$@$5$$!#(B
+# 説明
+オプションは -h で確認してください。
 
 ## input_nhknews.go
-NHK $B$+$i%K%e!<%9$r<hF@$7$F!"5-;v$4$H$K%F%-%9%H%U%!%$%k$r=PNO$7$^$9!#%G%U%)%k%H$G$O(B source/ $B$K=PNO$7$^$9!#D9J8$r(B Open JTalk $B$KEO$9$HF0:n$,IT0BDj$K$J$k$N$G!"5-;v$4$H$KJ,3d$7$F$$$^$9!#(B
+NHK からニュースを取得して、記事ごとにテキストファイルを出力します。デフォルトでは source/ に出力します。長文を Open JTalk に渡すと動作が不安定になるので、記事ごとに分割しています。
 
 ## reader.go
-$B;XDj%G%#%l%/%H%j$K$"$k%F%-%9%H%U%!%$%k$rFI$_>e$2$^$9!#%G%U%)%k%H$G$O(B source/ $B$N%F%-%9%H%U%!%$%k$,BP>]$G!"<j$G=q$$$?%F%-%9%H$G$b$+$^$$$^$;$s!#(B
+指定ディレクトリにあるテキストファイルを読み上げます。デフォルトでは source/ のテキストファイルが対象で、手で書いたテキストでもかまいません。
 
 
-# $B$5$$$4$K(B
-$B:#2s$O%K%e!<%9$r<hF@$9$k$h$&$K$7$?$1$l$I!"(BTL $B$r<hF@$7$?$j!"(BJenkins $B$N%(%i!<$r<hF@$7$?$j$9$k$H<BMQ@-$,>e$,$k$H;W$$$^$9!#(B
+# さいごに
+今回はニュースを取得するようにしたけれど、TL を取得したり、Jenkins のエラーを取得したりすると実用性が上がると思います。
 
 
